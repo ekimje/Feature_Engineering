@@ -5,7 +5,7 @@ import seaborn as sns
 import sklearn as sklearn
 
 # 1. 데이터 준비
-with open('File\\adult.names','r') as f:
+with open('Landing\\adult.names','r') as f:
     print(f.read())
     
 # 타겟변수는 income으로, 2개의 클래스(<=50K, >50K)로 구성되어 있습니다.
@@ -15,7 +15,7 @@ columns = ['age', 'workclass', 'fnlwgt', 'education', 'education-num', 'marital-
               'occupation', 'relationship', 'race','sex','capital-gain','capital-loss',
               'hours-per-week','native-country','income']
 
-df = pd.read_csv('File\\adult.data', names=columns, na_values=' ?')
+df = pd.read_csv('Landing\\adult.data', names=columns, na_values=' ?')
 print(df.head())
 print(df.shape) # (32561,15)
 print(df.info()) # NULL 없음 확인.
@@ -71,3 +71,5 @@ plt.show()
 #타겟 변수 'income' 범주형 변수. 특정 소득을 초과하는지 아닌지를 확인하여 분류하는 타겟 변수. 각 클래스가 몇 개 존재하는가? --> countplot으로 결정
 sns.countplot(x='income',data=df)
 plt.show()
+
+df.to_csv('Bronze\\adult.csv', index=False)
