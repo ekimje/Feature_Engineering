@@ -4,7 +4,7 @@
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, LabelEncoder
 from sklearn.preprocessing import StandardScaler, RobustScaler
 
 
@@ -12,6 +12,7 @@ df = pd.read_csv('Bronze\\adult.csv')
 # 컬럼 분리
 x = df.drop('income', axis=1) # 입력 데이터
 y = df['income'] # 정답 데이터
+
 
 # 파생 변수 생성 (스케일링 먼저 수행하면 변수 간의 단위 차이로 인한 편향 방지 가능)
 # 순자본 생성
@@ -21,6 +22,10 @@ x['work_intensity'] = pd.cut(x['hours-per-week'], bins=[0, 20, 40, 60, 100], lab
 
 x_drop = x.dropna() # Drop Na는 별도의 단계로 처리
 y_drop = y.loc[x_drop.index] # Drop Na에 해당하는 인덱스에 맞춰 y도 정렬
+
+le = LabelEncoder()
+y = le.fit_transform(y)
+y_drop = le.transform(y_drop)
 
 # 파이프라인 구축
 df_most_one_standard = Pipeline([
