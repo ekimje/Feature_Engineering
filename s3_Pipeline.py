@@ -6,71 +6,112 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, LabelEncoder
 from sklearn.preprocessing import StandardScaler, RobustScaler
+from sklearn.compose import ColumnTransformer
 
+def add_features(features:pd.DataFrame)->pd.DataFrame:
+    # 파생 변수 생성 (스케일링 먼저 수행하면 변수 간의 단위 차이로 인한 편향 방지 가능)
+    # 순자본 생성
+    features['net_capital'] = features['capital-gain'] - features['capital-loss']
+    # 근무 시간 구분
+    features['work_intensity'] = pd.cut(features['hours-per-week'], bins=[0, 20, 40, 60, 100], labels=['part','full','overtime','extreme'])
+    return features
+
+
+def get_features_groups(features:pd.DataFrame):
+    categorical_cols = features.select_dtypes(include=['object']).columns.tolist()
+    numerical_cols = features.select_dtypes(include=['int64', 'float64']).columns.tolist()
+    return categorical_cols, numerical_cols
+
+def make_preprocessor(numeric_imputation:str|None, categorical_imputation:str|None, encoding:str, scaling:str|None)->ColumnTransformer:
+    numeric_steps=[]
+    categorical_steps=[]
+    
+    if numeric_imputation is not None:
+        numeric_steps.append(('imputer', SimpleImputer(strategy=numeric_imputation)))
+    if scaling == 'standard':
+        numeric_steps.append(('scaler', StandardScaler()))
+    elif scaling == 'robust':
+        numeric_steps.append(('scaler', RobustScaler()))
+        
+    if categorical_imputation is not None:
+        categorical_steps.append(('imputer',SimpleImputer(strategy=categorical_imputation)))
+    if encoding == 'onehot':
+        categorical_steps.append(('encoder', OneHotEncoder(handle_unknown='ignore')))
+    elif encoding == 'ordinal':
+        categorical_steps.append(('encoder', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)))
+    
+    return ColumnTransformer([('num',Pipeline(numeric_steps), numeric_features),
+                              ('cat',Pipeline(categorical_steps), categorical_features)])
+
+experiment_configs = {
+    'MostFreq_OneHot_Standard': {
+        'missing':'Most Frequent',
+        'numeric_imputation':'most_frequent',
+        'categorical_imputation':'most_frequent',
+        'encoding':'One-Hot',
+        'encoding_key':'onehot',
+        'scaling':'Standard',
+        'scaling_key':'standard',
+        'dropna': False,
+    },
+    
+    'MostFreg_Label_Robust': {
+        'missing':'Most Frequent',
+        'numeric_imputation':'most_frequent',
+        'categorical_imputation':'most_frequent',
+        'encoding':'Label',
+        'encoding_key':'label',
+        'scaling':'Robust',
+        'scaling_key':'robust',
+        'dropna': False,
+    },
+    
+    'DropNa_OneHot_Standard': {
+        'missing':'Drop Na',
+        'numeric_imputation':None,
+        'categorical_imputation':None,
+        'encoding':'One-Hot',
+        'encoding_key':'onehot',
+        'scaling':'Standard',
+        'scaling_key':'standard',
+        'dropna': True,
+    },
+    
+    'DropNa_Label_Robust': {
+        'missing':'Drop Na',
+        'numeric_imputation':None,
+        'categorical_imputation':None,
+        'encoding':'Label',
+        'encoding_key':'label',
+        'scaling':'Robust',
+        'scaling_key':'robust',
+        'dropna': True,
+    }
+}
 
 df = pd.read_csv('Bronze\\adult.csv')
 # 컬럼 분리
 x = df.drop('income', axis=1) # 입력 데이터
 y = df['income'] # 정답 데이터
 
-
-# 파생 변수 생성 (스케일링 먼저 수행하면 변수 간의 단위 차이로 인한 편향 방지 가능)
-# 순자본 생성
-x['net_capital'] = x['capital-gain'] - x['capital-loss']
-# 근무 시간 구분
-x['work_intensity'] = pd.cut(x['hours-per-week'], bins=[0, 20, 40, 60, 100], labels=['part','full','overtime','extreme'])
+x = add_features(x)
+numeric_features, categorical_features = get_features_groups(x)
 
 x_drop = x.dropna() # Drop Na는 별도의 단계로 처리
 y_drop = y.loc[x_drop.index] # Drop Na에 해당하는 인덱스에 맞춰 y도 정렬
-
 le = LabelEncoder()
 y = le.fit_transform(y)
 y_drop = le.transform(y_drop)
 
-# 파이프라인 구축
-df_most_one_standard = Pipeline([
-    ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('encoder', OneHotEncoder(handle_unknown='ignore')),
-    ('scaler', StandardScaler(with_mean=False)) # StandardScaler는 평균이 0이 되도록 조정하므로 with_mean=False로 설정하여 sparse matrix 지원
-])
+# 파이프라인 구성
+Preprocessor={
+    name:make_preprocessor(
+        numeric_imputation = config['numeric_imputation'],
+        categorical_imputation = config['categorical_imputation'],
+        encoding = config['encoding'],
+        scaling = config['scaling']
+    )
+    for name, config in experiment_configs.items()
+}
 
-df_dropna_one_standard = Pipeline([
-    ('encoder', OneHotEncoder(handle_unknown='ignore')),
-    ('scaler', StandardScaler(with_mean=False))
-])
-
-df_most_one_robust = Pipeline([
-    ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('encoder', OneHotEncoder(handle_unknown='ignore')),
-    ('scaler', RobustScaler())
-])
-
-df_dropna_one_robust = Pipeline([
-    ('encoder', OneHotEncoder(handle_unknown='ignore')),
-    ('scaler', RobustScaler())
-])
-
-df_most_label_standard = Pipeline([
-    ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('encoder', OrdinalEncoder()), # Label Encoding은 별도의 단계로 처리
-    ('scaler', StandardScaler(with_mean=False))
-])
-
-df_most_label_robust = Pipeline([
-    ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('encoder', OrdinalEncoder()), # Label Encoding은 별도의 단계로 처리
-    ('scaler', RobustScaler())
-]) 
-
-df_dropna_label_standard = Pipeline([
-    ('encoder', OrdinalEncoder()), # Label Encoding은 별도의 단계로 처리 
-    ('scaler', StandardScaler(with_mean=False))
-])
-
-df_dropna_label_robust = Pipeline([
-    ('encoder', OrdinalEncoder()), # Label Encoding은 별도의 단계로 처리 
-    ('scaler', RobustScaler())
-])
-
-# 데이터 저장
 x.to_csv('Silver\\adult_features.csv', index=False)
