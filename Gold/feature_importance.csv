@@ -1,0 +1,81 @@
+experiment,feature selection,rank,feature,importance
+MostFreq_OneHot_Standard,X,1,num__fnlwgt,0.1535371273800716
+MostFreq_OneHot_Standard,X,2,num__age,0.14566778936381308
+MostFreq_OneHot_Standard,X,3,num__net_capital,0.07182374086095375
+MostFreq_OneHot_Standard,X,4,num__education-num,0.06188580002536938
+MostFreq_OneHot_Standard,X,5,num__capital-gain,0.05941770004570239
+MostFreq_OneHot_Standard,X,6,num__hours-per-week,0.05923071032596582
+MostFreq_OneHot_Standard,X,7,cat__relationship_ Husband,0.050638267917535264
+MostFreq_OneHot_Standard,X,8,cat__marital-status_ Married-civ-spouse,0.0496396810669708
+MostFreq_OneHot_Standard,X,9,cat__marital-status_ Never-married,0.023307403691640166
+MostFreq_OneHot_Standard,X,10,num__capital-loss,0.022755168369612867
+MostFreq_OneHot_Standard,O,1,num__age,0.2595950108913844
+MostFreq_OneHot_Standard,O,2,num__education-num,0.18529583679993356
+MostFreq_OneHot_Standard,O,3,num__capital-gain,0.16080215127503159
+MostFreq_OneHot_Standard,O,4,cat__marital-status_ Married-civ-spouse,0.1454767404460417
+MostFreq_OneHot_Standard,O,5,num__hours-per-week,0.1215097389014948
+MostFreq_OneHot_Standard,O,6,cat__relationship_ Husband,0.07071398579999508
+MostFreq_OneHot_Standard,O,7,cat__marital-status_ Never-married,0.027051300804074724
+MostFreq_OneHot_Standard,O,8,cat__work_intensity_overtime,0.013233142740840378
+MostFreq_OneHot_Standard,O,9,cat__sex_ Female,0.011748287880039135
+MostFreq_OneHot_Standard,O,10,cat__relationship_ Own-child,0.004573804461164693
+MostFreg_Label_Robust,X,1,num__fnlwgt,0.16716517215207413
+MostFreg_Label_Robust,X,2,num__age,0.1393708910577686
+MostFreg_Label_Robust,X,3,cat__relationship,0.10918401728163118
+MostFreg_Label_Robust,X,4,num__net_capital,0.09370267719271133
+MostFreg_Label_Robust,X,5,num__education-num,0.09155079719267141
+MostFreg_Label_Robust,X,6,cat__marital-status,0.06493287370674176
+MostFreg_Label_Robust,X,7,num__hours-per-week,0.06467399666660664
+MostFreg_Label_Robust,X,8,cat__occupation,0.06376690446270131
+MostFreg_Label_Robust,X,9,num__capital-gain,0.062379675503563624
+MostFreg_Label_Robust,X,10,cat__workclass,0.03794230392369181
+MostFreg_Label_Robust,O,1,num__age,0.23146839689004572
+MostFreg_Label_Robust,O,2,num__hours-per-week,0.13998362392614483
+MostFreg_Label_Robust,O,3,cat__relationship,0.13175300787307864
+MostFreg_Label_Robust,O,4,num__education-num,0.11561894873144925
+MostFreg_Label_Robust,O,5,num__net_capital,0.11184187807024555
+MostFreg_Label_Robust,O,6,num__capital-gain,0.0972264040652996
+MostFreg_Label_Robust,O,7,cat__marital-status,0.09583102940712479
+MostFreg_Label_Robust,O,8,cat__education,0.03355511820856926
+MostFreg_Label_Robust,O,9,num__capital-loss,0.03273394353998245
+MostFreg_Label_Robust,O,10,cat__sex,0.009987649288060113
+DropNa_OneHot_Standard,X,1,num__fnlwgt,0.1514600310974992
+DropNa_OneHot_Standard,X,2,num__age,0.14312393119545386
+DropNa_OneHot_Standard,X,3,num__net_capital,0.07780160168825581
+DropNa_OneHot_Standard,X,4,num__education-num,0.06425619995227254
+DropNa_OneHot_Standard,X,5,cat__marital-status_ Married-civ-spouse,0.05973201714289502
+DropNa_OneHot_Standard,X,6,num__hours-per-week,0.058681478836877805
+DropNa_OneHot_Standard,X,7,num__capital-gain,0.05818134645209419
+DropNa_OneHot_Standard,X,8,cat__relationship_ Husband,0.036440224512585336
+DropNa_OneHot_Standard,X,9,cat__marital-status_ Never-married,0.027500306004611307
+DropNa_OneHot_Standard,X,10,num__capital-loss,0.021379596134175182
+DropNa_OneHot_Standard,O,1,num__age,0.2567770551059628
+DropNa_OneHot_Standard,O,2,num__education-num,0.18301964122596562
+DropNa_OneHot_Standard,O,3,num__capital-gain,0.16074507711858696
+DropNa_OneHot_Standard,O,4,cat__marital-status_ Married-civ-spouse,0.14147111267012413
+DropNa_OneHot_Standard,O,5,num__hours-per-week,0.12229706879821077
+DropNa_OneHot_Standard,O,6,cat__relationship_ Husband,0.07673750525743278
+DropNa_OneHot_Standard,O,7,cat__marital-status_ Never-married,0.028689771227109008
+DropNa_OneHot_Standard,O,8,cat__work_intensity_overtime,0.013298957599203094
+DropNa_OneHot_Standard,O,9,cat__sex_ Male,0.012007943386707439
+DropNa_OneHot_Standard,O,10,cat__relationship_ Own-child,0.004955867610697418
+DropNa_Label_Robust,X,1,num__fnlwgt,0.16582090683318973
+DropNa_Label_Robust,X,2,num__age,0.13889636490760826
+DropNa_Label_Robust,X,3,cat__relationship,0.11343704810610146
+DropNa_Label_Robust,X,4,num__education-num,0.09365445299007005
+DropNa_Label_Robust,X,5,num__net_capital,0.08642013065222023
+DropNa_Label_Robust,X,6,num__capital-gain,0.06962955058418076
+DropNa_Label_Robust,X,7,num__hours-per-week,0.06418146902387953
+DropNa_Label_Robust,X,8,cat__occupation,0.06341844829538153
+DropNa_Label_Robust,X,9,cat__marital-status,0.06238071017592165
+DropNa_Label_Robust,X,10,cat__workclass,0.038534715403093465
+DropNa_Label_Robust,O,1,num__age,0.22705031355568173
+DropNa_Label_Robust,O,2,num__hours-per-week,0.14295656573181012
+DropNa_Label_Robust,O,3,cat__relationship,0.13496847776075746
+DropNa_Label_Robust,O,4,num__education-num,0.11436875408126715
+DropNa_Label_Robust,O,5,num__net_capital,0.11185693505771234
+DropNa_Label_Robust,O,6,num__capital-gain,0.09722334090269333
+DropNa_Label_Robust,O,7,cat__marital-status,0.09401923119434256
+DropNa_Label_Robust,O,8,num__capital-loss,0.03420983819669459
+DropNa_Label_Robust,O,9,cat__education,0.03299718037877987
+DropNa_Label_Robust,O,10,cat__sex,0.01034936314026089

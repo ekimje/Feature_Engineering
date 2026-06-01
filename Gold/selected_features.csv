@@ -1,0 +1,81 @@
+experiment,model,feature,selectKBest_score,rank
+MostFreq_OneHot_Standard,RandomForest,cat__marital-status_ Married-civ-spouse,6372.40254628369,1
+MostFreq_OneHot_Standard,RandomForest,cat__relationship_ Husband,4985.2860886852695,2
+MostFreq_OneHot_Standard,RandomForest,num__education-num,3287.333962025322,3
+MostFreq_OneHot_Standard,RandomForest,cat__marital-status_ Never-married,2870.771276162621,4
+MostFreq_OneHot_Standard,RandomForest,num__age,1488.396864940839,5
+MostFreq_OneHot_Standard,RandomForest,cat__relationship_ Own-child,1431.7706735781549,6
+MostFreq_OneHot_Standard,RandomForest,num__hours-per-week,1424.662044044891,7
+MostFreq_OneHot_Standard,RandomForest,cat__work_intensity_overtime,1418.375260231891,8
+MostFreq_OneHot_Standard,RandomForest,num__capital-gain,1345.6153940324643,9
+MostFreq_OneHot_Standard,RandomForest,cat__sex_ Female,1294.70100546226,10
+MostFreq_OneHot_Standard,XGBoost,cat__marital-status_ Married-civ-spouse,6372.40254628369,1
+MostFreq_OneHot_Standard,XGBoost,cat__relationship_ Husband,4985.2860886852695,2
+MostFreq_OneHot_Standard,XGBoost,num__education-num,3287.333962025322,3
+MostFreq_OneHot_Standard,XGBoost,cat__marital-status_ Never-married,2870.771276162621,4
+MostFreq_OneHot_Standard,XGBoost,num__age,1488.396864940839,5
+MostFreq_OneHot_Standard,XGBoost,cat__relationship_ Own-child,1431.7706735781549,6
+MostFreq_OneHot_Standard,XGBoost,num__hours-per-week,1424.662044044891,7
+MostFreq_OneHot_Standard,XGBoost,cat__work_intensity_overtime,1418.375260231891,8
+MostFreq_OneHot_Standard,XGBoost,num__capital-gain,1345.6153940324643,9
+MostFreq_OneHot_Standard,XGBoost,cat__sex_ Female,1294.70100546226,10
+MostFreg_Label_Robust,RandomForest,num__education-num,3287.333962024906,1
+MostFreg_Label_Robust,RandomForest,cat__relationship,1762.7916840485184,2
+MostFreg_Label_Robust,RandomForest,num__age,1488.3968649408948,3
+MostFreg_Label_Robust,RandomForest,num__hours-per-week,1424.6620440448366,4
+MostFreg_Label_Robust,RandomForest,num__capital-gain,1345.615394032349,5
+MostFreg_Label_Robust,RandomForest,cat__sex,1294.7010054622556,6
+MostFreg_Label_Robust,RandomForest,num__net_capital,1233.9978152359242,7
+MostFreg_Label_Robust,RandomForest,cat__marital-status,1033.1961583236227,8
+MostFreg_Label_Robust,RandomForest,num__capital-loss,590.1573054864639,9
+MostFreg_Label_Robust,RandomForest,cat__education,167.48706028817725,10
+MostFreg_Label_Robust,XGBoost,num__education-num,3287.333962024906,1
+MostFreg_Label_Robust,XGBoost,cat__relationship,1762.7916840485184,2
+MostFreg_Label_Robust,XGBoost,num__age,1488.3968649408948,3
+MostFreg_Label_Robust,XGBoost,num__hours-per-week,1424.6620440448366,4
+MostFreg_Label_Robust,XGBoost,num__capital-gain,1345.615394032349,5
+MostFreg_Label_Robust,XGBoost,cat__sex,1294.7010054622556,6
+MostFreg_Label_Robust,XGBoost,num__net_capital,1233.9978152359242,7
+MostFreg_Label_Robust,XGBoost,cat__marital-status,1033.1961583236227,8
+MostFreg_Label_Robust,XGBoost,num__capital-loss,590.1573054864639,9
+MostFreg_Label_Robust,XGBoost,cat__education,167.48706028817725,10
+DropNa_OneHot_Standard,RandomForest,cat__marital-status_ Married-civ-spouse,5971.328998443366,1
+DropNa_OneHot_Standard,RandomForest,cat__relationship_ Husband,4632.9616887062475,2
+DropNa_OneHot_Standard,RandomForest,num__education-num,2986.541971935455,3
+DropNa_OneHot_Standard,RandomForest,cat__marital-status_ Never-married,2749.8541269674047,4
+DropNa_OneHot_Standard,RandomForest,num__age,1516.0740940328308,5
+DropNa_OneHot_Standard,RandomForest,num__hours-per-week,1349.053492749997,6
+DropNa_OneHot_Standard,RandomForest,cat__work_intensity_overtime,1323.734598264298,7
+DropNa_OneHot_Standard,RandomForest,cat__relationship_ Own-child,1277.213470329803,8
+DropNa_OneHot_Standard,RandomForest,num__capital-gain,1246.315223754708,9
+DropNa_OneHot_Standard,RandomForest,cat__sex_ Male,1212.6783933304857,10
+DropNa_OneHot_Standard,XGBoost,cat__marital-status_ Married-civ-spouse,5971.328998443366,1
+DropNa_OneHot_Standard,XGBoost,cat__relationship_ Husband,4632.9616887062475,2
+DropNa_OneHot_Standard,XGBoost,num__education-num,2986.541971935455,3
+DropNa_OneHot_Standard,XGBoost,cat__marital-status_ Never-married,2749.8541269674047,4
+DropNa_OneHot_Standard,XGBoost,num__age,1516.0740940328308,5
+DropNa_OneHot_Standard,XGBoost,num__hours-per-week,1349.053492749997,6
+DropNa_OneHot_Standard,XGBoost,cat__work_intensity_overtime,1323.734598264298,7
+DropNa_OneHot_Standard,XGBoost,cat__relationship_ Own-child,1277.213470329803,8
+DropNa_OneHot_Standard,XGBoost,num__capital-gain,1246.315223754708,9
+DropNa_OneHot_Standard,XGBoost,cat__sex_ Male,1212.6783933304857,10
+DropNa_Label_Robust,RandomForest,num__education-num,2986.5419719353986,1
+DropNa_Label_Robust,RandomForest,cat__relationship,1600.784319380542,2
+DropNa_Label_Robust,RandomForest,num__age,1516.0740940327478,3
+DropNa_Label_Robust,RandomForest,num__hours-per-week,1349.0534927499104,4
+DropNa_Label_Robust,RandomForest,num__capital-gain,1246.315223754714,5
+DropNa_Label_Robust,RandomForest,cat__sex,1212.6783933304857,6
+DropNa_Label_Robust,RandomForest,num__net_capital,1144.9909385029107,7
+DropNa_Label_Robust,RandomForest,cat__marital-status,953.3066072234641,8
+DropNa_Label_Robust,RandomForest,num__capital-loss,549.3191194405614,9
+DropNa_Label_Robust,RandomForest,cat__education,147.77068444588716,10
+DropNa_Label_Robust,XGBoost,num__education-num,2986.5419719353986,1
+DropNa_Label_Robust,XGBoost,cat__relationship,1600.784319380542,2
+DropNa_Label_Robust,XGBoost,num__age,1516.0740940327478,3
+DropNa_Label_Robust,XGBoost,num__hours-per-week,1349.0534927499104,4
+DropNa_Label_Robust,XGBoost,num__capital-gain,1246.315223754714,5
+DropNa_Label_Robust,XGBoost,cat__sex,1212.6783933304857,6
+DropNa_Label_Robust,XGBoost,num__net_capital,1144.9909385029107,7
+DropNa_Label_Robust,XGBoost,cat__marital-status,953.3066072234641,8
+DropNa_Label_Robust,XGBoost,num__capital-loss,549.3191194405614,9
+DropNa_Label_Robust,XGBoost,cat__education,147.77068444588716,10

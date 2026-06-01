@@ -35,7 +35,8 @@ def build_pipeline(experiment_name:str, model_name:str, use_feature_selection:bo
     return Pipeline(steps)
 
 def predict_positive_probability(pipeline:Pipeline, X_test:pd.DataFrame)->np.ndarray:
-    if hasattr(pipeline.named_steps['classifier'], 'predict_proba'):
+    classifier = pipeline.named_steps['classifier']
+    if hasattr(classifier, 'predict_proba'):
         return pipeline.predict_proba(X_test)[:, 1]
     else:
         return pipeline.decision_function(X_test)
@@ -55,16 +56,17 @@ def get_selected_features(pipeline:Pipeline)->pd.DataFrame:
     return pd.DataFrame({'feature': selected_names, 'score': selected_scores}).sort_values(by='score', ascending=False)
 
 def get_random_forest_importance(pipeline:Pipeline)->pd.DataFrame:
-    if pipeline.named_steps['model'].__class__.__name__ != 'RandomForestClassifier':
+    classifier = pipeline.named_steps['classifier']
+    if classifier.__class__.__name__ != 'RandomForestClassifier':
         return pd.DataFrame()
     
-    feture_names = get_transformed_feature_names(pipeline)
+    feature_names = get_transformed_feature_names(pipeline)
     if 'feature_selection' in pipeline.named_steps:
         selector = pipeline.named_steps['feature_selection']
         feature_names = feature_names[selector.get_support()]
         
-    importances = pipeline.named_steps['model'].feature_importances_
-    return pd.DataFrame({'feature': feature_names, 'importance': importances}).sort_values('Importance', ascending=False).head(TOP_N_FEATURES)
+    importances = pipeline.named_steps['classifier'].feature_importances_
+    return pd.DataFrame({'feature': feature_names, 'importance': importances}).sort_values('importance', ascending=False).head(TOP_N_FEATURES)
 
 def evaluate_pipeline(pipeline:Pipeline, x_test:pd.DataFrame, y_test:pd.Series)->dict[str,float]:
     y_pred = pipeline.predict(x_test)
@@ -107,7 +109,7 @@ for experiment_name, config in experiment_configs.items():
                     'experiment': experiment_name,
                     'model': model_name,
                     'feature': row.feature,
-                    'selectKBest_score':row.selectKBest_score,
+                    'selectKBest_score':row.score,
                     'rank': rank
                 })
             
